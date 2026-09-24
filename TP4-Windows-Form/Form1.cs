@@ -1,3 +1,14 @@
+// LINQ - Sirve para hacer consultas de tablas
+// Languaje integrate query
+// Workbench - utilizada para sql
+// SQL (Structured Query Language)
+
+// Linq utiliza SQL Syntax y method Syntax de c#
+
+// Dock indica a que direccion queremos que se expanda las herramientas de la ventana. DockStyle.Fill indica que se expanda a toda la ventana
+// Datagridview
+// Agregar: SelectMode: FullRowSelect | AutoSizeRows: Fill
+// poner en false: allowUserAddRows - AllowUserDeleteRows - AllowUserOrderRows
 using System.Collections.Generic; // <- Nos permite utilizar Listas, Diccionarios
 namespace TP4_Windows_Form
 {
@@ -6,18 +17,12 @@ namespace TP4_Windows_Form
         public List<Pelicula> peliculas;
         public Form1()
         {
-            // LINQ - Sirve para hacer consultas de tablas
-            // Languaje integrate query
-            // Workbench - utilizada para sql
-            // SQL (Structured Query Language)
 
-            // Linq utiliza SQL Syntax y method Syntax de c#
             InitializeComponent();
             peliculas = CargarDatos();
             dataGridView1.DataSource = peliculas; // <- DataSource es la fuente de los datos. Sirve para modificar los datos
-            // Datagridview
-            // Agregar: SelectMode: FullRowSelect | AutoSizeRows: Fill
-            // poner en false: allowUserAddRows - AllowUserDeleteRows - AllowUserOrderRows
+            cmbGenero.DataSource = Enum.GetValues(typeof(Genero));
+            cmbGenero.SelectedIndex = -1;
         }
 
         public List<Pelicula> CargarDatos()
@@ -99,7 +104,7 @@ namespace TP4_Windows_Form
         {
             string nombre = txtName.Text;
             string director = txtDirector.Text;
-            string genero = txtGenero.Text;
+            string genero = cmbGenero.SelectedItem?.ToString(); 
             int anio = int.Parse(txtAnio.Text);
             int id = peliculas.Count + 1;
 
@@ -112,12 +117,17 @@ namespace TP4_Windows_Form
             LimpiarFormulario();
         }
 
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            LimpiarFormulario();
+        }
+
         public void LimpiarFormulario()
         {
             txtName.Clear();
             txtDirector.Clear();
             txtAnio.Clear();
-            txtGenero.Clear();
+            cmbGenero.SelectedIndex = -1; // <- Para que no quede seleccionado ningun genero
         }
 
         public class Pelicula
@@ -152,5 +162,22 @@ namespace TP4_Windows_Form
         {
 
         }
+
+        private void panelNombre_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnMostrarMas_Click(object sender, EventArgs e)
+        {
+            panelMas.Visible = !panelMas.Visible; // <- Si esta visible lo oculta y si esta oculto lo muestra
+        }
+
+  
     }
 }
