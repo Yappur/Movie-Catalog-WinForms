@@ -1,0 +1,17 @@
+C:\Users\Mateo\source\repos\TP4-Windows-Form\TP4-Windows-Form\bin\Debug\net10.0-windows\TP4-Windows-Form.exe
+C:\Users\Mateo\source\repos\TP4-Windows-Form\TP4-Windows-Form\bin\Debug\net10.0-windows\TP4-Windows-Form.deps.json
+C:\Users\Mateo\source\repos\TP4-Windows-Form\TP4-Windows-Form\bin\Debug\net10.0-windows\TP4-Windows-Form.runtimeconfig.json
+C:\Users\Mateo\source\repos\TP4-Windows-Form\TP4-Windows-Form\bin\Debug\net10.0-windows\TP4-Windows-Form.dll
+C:\Users\Mateo\source\repos\TP4-Windows-Form\TP4-Windows-Form\bin\Debug\net10.0-windows\TP4-Windows-Form.pdb
+C:\Users\Mateo\source\repos\TP4-Windows-Form\TP4-Windows-Form\obj\Debug\net10.0-windows\TP4_Windows_Form.Form1.resources
+C:\Users\Mateo\source\repos\TP4-Windows-Form\TP4-Windows-Form\obj\Debug\net10.0-windows\TP4-Windows-Form.csproj.GenerateResource.cache
+C:\Users\Mateo\source\repos\TP4-Windows-Form\TP4-Windows-Form\obj\Debug\net10.0-windows\TP4-Windows-Form.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Mateo\source\repos\TP4-Windows-Form\TP4-Windows-Form\obj\Debug\net10.0-windows\TP4-Windows-Form.AssemblyInfoInputs.cache
+C:\Users\Mateo\source\repos\TP4-Windows-Form\TP4-Windows-Form\obj\Debug\net10.0-windows\TP4-Windows-Form.AssemblyInfo.cs
+C:\Users\Mateo\source\repos\TP4-Windows-Form\TP4-Windows-Form\obj\Debug\net10.0-windows\TP4-Windows-Form.csproj.CoreCompileInputs.cache
+C:\Users\Mateo\source\repos\TP4-Windows-Form\TP4-Windows-Form\obj\Debug\net10.0-windows\TP4-Windows-Form.dll
+C:\Users\Mateo\source\repos\TP4-Windows-Form\TP4-Windows-Form\obj\Debug\net10.0-windows\refint\TP4-Windows-Form.dll
+C:\Users\Mateo\source\repos\TP4-Windows-Form\TP4-Windows-Form\obj\Debug\net10.0-windows\TP4-Windows-Form.pdb
+C:\Users\Mateo\source\repos\TP4-Windows-Form\TP4-Windows-Form\obj\Debug\net10.0-windows\TP4-Windows-Form.genruntimeconfig.cache
+C:\Users\Mateo\source\repos\TP4-Windows-Form\TP4-Windows-Form\obj\Debug\net10.0-windows\ref\TP4-Windows-Form.dll
+C:\Users\Mateo\source\repos\TP4-Windows-Form\TP4-Windows-Form\obj\Debug\net10.0-windows\TP4-Wind.6BFC4048.Up2Date
