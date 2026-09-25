@@ -142,10 +142,19 @@ namespace TP4_Windows_Form
         private void btnFiltrar_Click(object sender, EventArgs e)
         {
             string filtro = txtFiltro.Text.Trim().ToLower(); // <- Convertimos a minusculas para que no sea case sensitive
+
+            if (filtro == string.Empty)
+            {
+                MessageBox.Show("Tenes que agregar un nombre para el filtro", "Campo requerido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtName.Focus();
+                return;
+            }
+
             var resultado = contenidos
                 .Where(p => p.Nombre.ToLower().Contains(filtro) || p.Director.ToLower().Contains(filtro) || p.Genero.ToString().ToLower().Contains(filtro))
                 .OrderBy(p => p.Anio)
                 .ToList();
+
             dataGridView1.DataSource = resultado;
         }
 
@@ -186,14 +195,68 @@ namespace TP4_Windows_Form
             dataGridView1.DataSource = resultado;
         }
 
-        // =========================================0
+        private void btnBorrarFiltro_Click(object sender, EventArgs e)
+        {
+            txtFiltro.Clear();
+            dataGridView1.DataSource = contenidos;
+        }
+
+        // =========================================
 
         private void btnEnviar_Click(object sender, EventArgs e)
         {
-            string nombre = txtName.Text;
-            string director = txtDirector.Text;
+            // Validaciones
+            if (string.IsNullOrWhiteSpace(txtName.Text))
+            {
+                MessageBox.Show("Falta completar el campo: Nombre", "Campo requerido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtName.Focus();
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtDirector.Text))
+            {
+                MessageBox.Show("Falta completar el campo: Director", "Campo requerido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtDirector.Focus();
+                return;
+            }
+
+            if (cmbGenero.SelectedIndex == -1)
+            {
+                MessageBox.Show("Falta seleccionar el Género", "Campo requerido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                cmbGenero.DroppedDown = true;
+                return;
+            }
+
+            if (!int.TryParse(txtAnio.Text, out int anio) || anio <= 0 || anio > 2026)
+            {
+                MessageBox.Show("Año inválido o vacío. Complete con un número válido.", "Campo requerido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtAnio.Focus();
+                return;
+            }
+
+            if (rbPelicula.Checked)
+            {
+                if (!int.TryParse(txtDuracion.Text, out int duracion) || duracion <= 0 || duracion > 54000)
+                {
+                    MessageBox.Show("Duración inválida o vacía. Complete con un número de minutos válido.", "Campo requerido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtDuracion.Focus();
+                    return;
+                }
+            }
+            else
+            {
+                if (!int.TryParse(txtTemporadas.Text, out int temporadas) || temporadas <= 0)
+                {
+                    MessageBox.Show("Cantidad de temporadas inválida o vacía. Complete con un número válido.", "Campo requerido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtTemporadas.Focus();
+                    return;
+                }
+            }
+
+            // aca todos los campos son válidos
+            string nombre = txtName.Text.Trim();
+            string director = txtDirector.Text.Trim();
             Genero genero = (Genero)cmbGenero.SelectedItem;
-            int anio = int.Parse(txtAnio.Text);
             int id = contenidos.Count + 1;
             bool destacado = chkDestacado.Checked;
 
@@ -299,6 +362,6 @@ namespace TP4_Windows_Form
             }
         }
 
-      
+       
     }
 }

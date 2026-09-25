@@ -195,10 +195,10 @@
             // 
             // btnFiltrar
             // 
-            btnFiltrar.Location = new Point(574, 327);
+            btnFiltrar.Location = new Point(574, 331);
             btnFiltrar.Margin = new Padding(3, 2, 3, 2);
             btnFiltrar.Name = "btnFiltrar";
-            btnFiltrar.Size = new Size(104, 29);
+            btnFiltrar.Size = new Size(104, 25);
             btnFiltrar.TabIndex = 12;
             btnFiltrar.Text = "Filtrar";
             btnFiltrar.UseVisualStyleBackColor = true;
@@ -243,6 +243,7 @@
             // 
             // panel1
             // 
+            panel1.BackColor = SystemColors.GradientInactiveCaption;
             panel1.Controls.Add(label1);
             panel1.Controls.Add(label2);
             panel1.Location = new Point(0, 1);
@@ -293,6 +294,7 @@
             btnBorrarFiltro.TabIndex = 22;
             btnBorrarFiltro.Text = "Borrar Filtros";
             btnBorrarFiltro.UseVisualStyleBackColor = true;
+            btnBorrarFiltro.Click += btnBorrarFiltro_Click;
             // 
             // btnMostrarMas
             // 
@@ -383,7 +385,7 @@
             // 
             panelCheckSerie.Controls.Add(txtTemporadas);
             panelCheckSerie.Controls.Add(label7);
-            panelCheckSerie.Location = new Point(427, 271);
+            panelCheckSerie.Location = new Point(218, 271);
             panelCheckSerie.Name = "panelCheckSerie";
             panelCheckSerie.Size = new Size(203, 53);
             panelCheckSerie.TabIndex = 32;
@@ -393,6 +395,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.Tan;
             BackgroundImageLayout = ImageLayout.None;
             ClientSize = new Size(889, 602);
             Controls.Add(panelCheckSerie);
