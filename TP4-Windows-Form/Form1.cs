@@ -10,52 +10,140 @@
 // Agregar: SelectMode: FullRowSelect | AutoSizeRows: Fill
 // poner en false: allowUserAddRows - AllowUserDeleteRows - AllowUserOrderRows
 using System.Collections.Generic; // <- Nos permite utilizar Listas, Diccionarios
+using System.Text.RegularExpressions;
 namespace TP4_Windows_Form
 {
     public partial class Form1 : Form
     {
-        public List<Pelicula> peliculas;
+        public List<ContenidoAudioVisual> contenidos;
         public Form1()
         {
 
             InitializeComponent();
-            peliculas = CargarDatos();
-            dataGridView1.DataSource = peliculas; // <- DataSource es la fuente de los datos. Sirve para modificar los datos
+            contenidos = CargarDatos();
+
+            dataGridView1.AutoGenerateColumns = false;
+            ConfigurarColumnas();
+            dataGridView1.DataSource = contenidos; // <- DataSource es la fuente de los datos. Sirve para modificar los datos
             cmbGenero.DataSource = Enum.GetValues(typeof(Genero));
             cmbGenero.SelectedIndex = -1;
-        }
 
-        public List<Pelicula> CargarDatos()
-        {
-            peliculas = new List<Pelicula>
-            {
-                new Pelicula(1, "El Padrino", "Francis Ford Coppola", 1972, "Crimen"),
-                new Pelicula(2, "El Caballero Oscuro", "Christopher Nolan", 2008, "Acción"),
-                new Pelicula(3, "Pulp Fiction", "Quentin Tarantino", 1994, "Crimen"),
-                new Pelicula(4, "Forrest Gump", "Robert Zemeckis", 1994, "Drama"),
-                new Pelicula(5, "Inception", "Christopher Nolan", 2010, "Ciencia ficción"),
-                new Pelicula(6, "La La Land", "Damien Chazelle", 2016, "Musical"),
-                new Pelicula(7, "Gladiador", "Ridley Scott", 2000, "Acción"),
-                new Pelicula(8, "Titanic", "James Cameron", 1997, "Romance"),
-                new Pelicula(9, "Matrix", "Lana y Lilly Wachowski", 1999, "Ciencia ficción"),
-                new Pelicula(10, "El Señor de los Anillos: La Comunidad del Anillo", "Peter Jackson", 2001, "Fantasía")
-            };
-
-
-            return peliculas;
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            CargarDatos();
+            rbPelicula.Checked = true;
+            ActualizarCamposPorTipo();
         }
+
+        private void ActualizarCamposPorTipo()
+        {
+            panelCheckPelicula.Visible = rbPelicula.Checked;
+            panelCheckSerie.Visible = rbSerie.Checked;
+        }
+
+        private void ConfigurarColumnas()
+        {
+            dataGridView1.Columns.Clear();
+
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "Id",
+                HeaderText = "ID",
+                ReadOnly = true
+            });
+
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "Nombre",
+                HeaderText = "Nombre"
+            });
+
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "Director",
+                HeaderText = "Director"
+            });
+
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "Anio",
+                HeaderText = "Año"
+            });
+
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "Genero",
+                HeaderText = "Género"
+            });
+
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "TipoContenido",
+                HeaderText = "Tipo"
+            });
+
+            dataGridView1.Columns.Add(new DataGridViewCheckBoxColumn
+            {
+                DataPropertyName = "Destacado",
+                HeaderText = "Destacado",
+                ReadOnly = true
+            });
+
+            //  Columna de Ver info 
+            dataGridView1.Columns.Add(new DataGridViewButtonColumn
+            {
+                Name = "colVerMas",
+                HeaderText = "Ver Más",
+                Text = "👁",
+                UseColumnTextForButtonValue = true,
+                Width = 40
+            });
+
+            //  Columna de eliminar 
+            dataGridView1.Columns.Add(new DataGridViewButtonColumn
+            {
+                Name = "colEliminar",
+                HeaderText = "Eliminar",
+                Text = "🗑",
+                UseColumnTextForButtonValue = true,
+                Width = 40
+            });
+
+
+
+        }
+
+        public List<ContenidoAudioVisual> CargarDatos()
+        {
+            contenidos = new List<ContenidoAudioVisual>
+            {
+                new Pelicula(1, "El Padrino", "Francis Ford Coppola", 1972,  Genero.Crimen, true, 175),
+                new Pelicula(2, "El Caballero Oscuro", "Christopher Nolan", 2008, Genero.Accion, false, 152),
+                new Pelicula(3, "Pulp Fiction", "Quentin Tarantino", 1994, Genero.Crimen, true, 154),
+                new Pelicula(4, "Forrest Gump", "Robert Zemeckis", 1994, Genero.Drama, false, 142),
+                new Pelicula(5, "Inception", "Christopher Nolan", 2010, Genero.CienciaFiccion, true, 148),
+                new Pelicula(6, "La La Land", "Damien Chazelle", 2016, Genero.Drama, false, 135),
+                new Pelicula(7, "Gladiador", "Ridley Scott", 2000, Genero.Accion, false, 155),
+                new Pelicula(8, "Titanic", "James Cameron", 1997, Genero.Romance, false, 194),
+                new Pelicula(9, "Matrix", "Lana y Lilly Wachowski", 1999, Genero.CienciaFiccion, false, 136),
+                new Pelicula(10, "El Señor de los Anillos: La Comunidad del Anillo", "Peter Jackson", 2001, Genero.CienciaFiccion, false, 179),
+                new Serie(11, "Breaking Bad", "Vince Gilligan", 2008, Genero.Crimen, true, 5),
+                new Serie(12, "Stranger Things", "Duffer Brothers", 2016, Genero.CienciaFiccion, false, 4)
+            };
+
+
+            return contenidos;
+        }
+
+
 
         // FILTROS
         private void btnFiltrar_Click(object sender, EventArgs e)
         {
             string filtro = txtFiltro.Text.Trim().ToLower(); // <- Convertimos a minusculas para que no sea case sensitive
-            var resultado = peliculas
-                .Where(p => p.Nombre.ToLower().Contains(filtro) || p.Director.ToLower().Contains(filtro) || p.Genero.ToLower().Contains(filtro))
+            var resultado = contenidos
+                .Where(p => p.Nombre.ToLower().Contains(filtro) || p.Director.ToLower().Contains(filtro) || p.Genero.ToString().ToLower().Contains(filtro))
                 .OrderBy(p => p.Anio)
                 .ToList();
             dataGridView1.DataSource = resultado;
@@ -64,8 +152,8 @@ namespace TP4_Windows_Form
 
         private void btnFiltroCrimen_Click(object sender, EventArgs e)
         {
-            var resultado = peliculas
-                 .Where(p => p.Genero.ToLower() == "crimen")
+            var resultado = contenidos
+                 .Where(p => p.Genero == Genero.Crimen)
                  .OrderBy(p => p.Anio)
                  .ToList();
             dataGridView1.DataSource = resultado;
@@ -73,8 +161,8 @@ namespace TP4_Windows_Form
 
         private void btnAccionFiltro_Click(object sender, EventArgs e)
         {
-            var resultado = peliculas
-                .Where(p => p.Genero.ToLower() == "acción" || p.Genero.ToLower() == "accion")
+            var resultado = contenidos
+                .Where(p => p.Genero == Genero.Accion)
                 .OrderBy(p => p.Anio)
                 .ToList();
             dataGridView1.DataSource = resultado;
@@ -82,8 +170,8 @@ namespace TP4_Windows_Form
 
         private void btnFiltroRomance_Click(object sender, EventArgs e)
         {
-            var resultado = peliculas
-     .Where(p => p.Genero.ToLower() == "romance")
+            var resultado = contenidos
+     .Where(p => p.Genero == Genero.Romance)
      .OrderBy(p => p.Anio)
      .ToList();
             dataGridView1.DataSource = resultado;
@@ -91,8 +179,8 @@ namespace TP4_Windows_Form
 
         private void btnDramaFiltro_Click(object sender, EventArgs e)
         {
-            var resultado = peliculas
-    .Where(p => p.Genero.ToLower() == "drama")
+            var resultado = contenidos
+    .Where(p => p.Genero == Genero.Drama)
     .OrderBy(p => p.Anio)
     .ToList();
             dataGridView1.DataSource = resultado;
@@ -104,15 +192,21 @@ namespace TP4_Windows_Form
         {
             string nombre = txtName.Text;
             string director = txtDirector.Text;
-            string genero = cmbGenero.SelectedItem?.ToString(); 
+            Genero genero = (Genero)cmbGenero.SelectedItem;
             int anio = int.Parse(txtAnio.Text);
-            int id = peliculas.Count + 1;
+            int id = contenidos.Count + 1;
+            bool destacado = chkDestacado.Checked;
 
-            var nuevaPelicula = new Pelicula(id, nombre, director, anio, genero);
-            peliculas.Add(nuevaPelicula);
+            ContenidoAudioVisual nuevo;
 
+            if (rbPelicula.Checked)
+                nuevo = new Pelicula(id, nombre, director, anio, genero, destacado, int.Parse(txtDuracion.Text));
+            else
+                nuevo = new Serie(id, nombre, director, anio, genero, destacado, int.Parse(txtTemporadas.Text));
+
+            contenidos.Add(nuevo);
             dataGridView1.DataSource = null; // <- Para que se refresque el datagridview
-            dataGridView1.DataSource = peliculas;
+            dataGridView1.DataSource = contenidos;
 
             LimpiarFormulario();
         }
@@ -128,49 +222,12 @@ namespace TP4_Windows_Form
             txtDirector.Clear();
             txtAnio.Clear();
             cmbGenero.SelectedIndex = -1; // <- Para que no quede seleccionado ningun genero
-        }
-
-        public class Pelicula
-        {
-            public int Id { get; set; }
-            public string Nombre { get; set; } = string.Empty; // La propiedad se inicilaliza vacia y no da error de nulos
-            public string Director { get; set; } = string.Empty;
-            public int Anio { get; set; }
-            public string Genero { get; set; } = string.Empty;
-
-            public Pelicula(int id, string nombre, string director, int anio, string genero)
-            {
-                Id = id;
-                Nombre = nombre;
-                Director = director;
-                Anio = anio;
-                Genero = genero;
-            }
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panelNombre_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
-        {
-
+            txtDuracion.Clear();
+            txtTemporadas.Clear();
+            chkDestacado.Checked = false;
+            rbPelicula.Checked = true;
+            ActualizarCamposPorTipo();
+            dataGridView1.ClearSelection();
         }
 
         private void btnMostrarMas_Click(object sender, EventArgs e)
@@ -178,6 +235,70 @@ namespace TP4_Windows_Form
             panelMas.Visible = !panelMas.Visible; // <- Si esta visible lo oculta y si esta oculto lo muestra
         }
 
-  
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+        private void rbPelicula_CheckedChanged(object sender, EventArgs e)
+        {
+            ActualizarCamposPorTipo();
+
+        }
+
+        private void rbSerie_CheckedChanged(object sender, EventArgs e)
+        {
+            ActualizarCamposPorTipo();
+
+        }
+
+
+        // Permite el formateo de las celdas asi por ejemplo si el genero es
+        // "CienciaFiccion" lo muestra como "Ciencia Ficcion" y si el tipo de contenido
+        // es "TipoContenido" lo muestra como "Tipo Contenido"
+        private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            string colName = dataGridView1.Columns[e.ColumnIndex].DataPropertyName;
+
+            if ((colName == "Genero" || colName == "TipoContenido") && e.Value != null)
+            {
+                e.Value = Regex.Replace(e.Value.ToString(), "(?<!^)([A-Z])", " $1");
+                e.FormattingApplied = true;
+            }
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridView1.Columns[e.ColumnIndex].Name == "colEliminar" && e.RowIndex >= 0)
+            {
+                var item = (ContenidoAudioVisual)dataGridView1.Rows[e.RowIndex].DataBoundItem;
+                if (MessageBox.Show($"¿Está seguro que desea eliminar {item.Nombre}?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                {
+                    contenidos.Remove(item);
+                }
+
+                dataGridView1.DataSource = null;
+                dataGridView1.DataSource = contenidos;
+            }
+
+            if (dataGridView1.Columns[e.ColumnIndex].Name == "colVerMas" && e.RowIndex >= 0)
+            {
+                var item = (ContenidoAudioVisual)dataGridView1.Rows[e.RowIndex].DataBoundItem;
+                string mensaje = $"Nombre: {item.Nombre}\nDirector: {item.Director}\nAño: {item.Anio}\nGénero: {item.Genero}\nTipo: {item.TipoContenido}\nDestacado: {(item.Destacado ? "✔" : "✖")}";
+                if (item is Pelicula pelicula)
+                {
+                    mensaje += $"\nDuración: {pelicula.DuracionMinutos} minutos";
+                }
+                else if (item is Serie serie)
+                {
+                    mensaje += $"\nTemporadas: {serie.Temporadas}";
+                }
+                MessageBox.Show(mensaje, "Información del contenido", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+      
     }
 }

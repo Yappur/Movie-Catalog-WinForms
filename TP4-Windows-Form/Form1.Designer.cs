@@ -47,25 +47,33 @@
             label4 = new Label();
             btnDramaFiltro = new Button();
             panel1 = new Panel();
-            checkBoxDestacado = new CheckBox();
-            radioPelicula = new RadioButton();
-            radioSerie = new RadioButton();
+            chkDestacado = new CheckBox();
+            rbPelicula = new RadioButton();
+            rbSerie = new RadioButton();
             btnBorrarFiltro = new Button();
             btnMostrarMas = new Button();
             panelMas = new Panel();
             btnLimpiar = new Button();
             cmbGenero = new ComboBox();
+            txtTemporadas = new TextBox();
+            txtDuracion = new TextBox();
+            label7 = new Label();
+            label8 = new Label();
+            panelCheckPelicula = new Panel();
+            panelCheckSerie = new Panel();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel1.SuspendLayout();
             panelMas.SuspendLayout();
+            panelCheckPelicula.SuspendLayout();
+            panelCheckSerie.SuspendLayout();
             SuspendLayout();
             // 
             // btnEnviar
             // 
-            btnEnviar.Location = new Point(218, 293);
+            btnEnviar.Location = new Point(221, 331);
             btnEnviar.Margin = new Padding(3, 2, 3, 2);
             btnEnviar.Name = "btnEnviar";
-            btnEnviar.Size = new Size(119, 29);
+            btnEnviar.Size = new Size(131, 39);
             btnEnviar.TabIndex = 1;
             btnEnviar.Text = "Enviar";
             btnEnviar.UseVisualStyleBackColor = true;
@@ -77,17 +85,19 @@
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(69, 373);
+            dataGridView1.Location = new Point(69, 396);
             dataGridView1.Margin = new Padding(3, 2, 3, 2);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.Size = new Size(676, 151);
+            dataGridView1.Size = new Size(676, 185);
             dataGridView1.TabIndex = 11;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            dataGridView1.CellFormatting += dataGridView1_CellFormatting;
             // 
             // txtFiltro
             // 
-            txtFiltro.Location = new Point(684, 297);
+            txtFiltro.Location = new Point(684, 331);
             txtFiltro.Margin = new Padding(3, 2, 3, 2);
             txtFiltro.Name = "txtFiltro";
             txtFiltro.PlaceholderText = "Buscar...";
@@ -115,7 +125,7 @@
             // 
             label2.Anchor = AnchorStyles.None;
             label2.AutoSize = true;
-            label2.Location = new Point(218, 101);
+            label2.Location = new Point(224, 101);
             label2.Name = "label2";
             label2.Size = new Size(164, 15);
             label2.TabIndex = 2;
@@ -157,12 +167,11 @@
             label1.Anchor = AnchorStyles.Top;
             label1.AutoSize = true;
             label1.Font = new Font("Malgun Gothic", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(238, 27);
+            label1.Location = new Point(244, 27);
             label1.Name = "label1";
             label1.Size = new Size(351, 45);
             label1.TabIndex = 0;
             label1.Text = "Cátalogo De Peliculas";
-            label1.Click += label1_Click;
             // 
             // label5
             // 
@@ -186,7 +195,7 @@
             // 
             // btnFiltrar
             // 
-            btnFiltrar.Location = new Point(574, 293);
+            btnFiltrar.Location = new Point(574, 327);
             btnFiltrar.Margin = new Padding(3, 2, 3, 2);
             btnFiltrar.Name = "btnFiltrar";
             btnFiltrar.Size = new Size(104, 29);
@@ -238,55 +247,56 @@
             panel1.Controls.Add(label2);
             panel1.Location = new Point(0, 1);
             panel1.Name = "panel1";
-            panel1.Size = new Size(879, 116);
+            panel1.Size = new Size(890, 116);
             panel1.TabIndex = 18;
             // 
-            // checkBoxDestacado
+            // chkDestacado
             // 
-            checkBoxDestacado.AutoSize = true;
-            checkBoxDestacado.Location = new Point(412, 247);
-            checkBoxDestacado.Name = "checkBoxDestacado";
-            checkBoxDestacado.Size = new Size(81, 19);
-            checkBoxDestacado.TabIndex = 19;
-            checkBoxDestacado.Text = "Destacado";
-            checkBoxDestacado.UseVisualStyleBackColor = true;
+            chkDestacado.AutoSize = true;
+            chkDestacado.Location = new Point(412, 247);
+            chkDestacado.Name = "chkDestacado";
+            chkDestacado.Size = new Size(81, 19);
+            chkDestacado.TabIndex = 19;
+            chkDestacado.Text = "Destacado";
+            chkDestacado.UseVisualStyleBackColor = true;
             // 
-            // radioPelicula
+            // rbPelicula
             // 
-            radioPelicula.AutoSize = true;
-            radioPelicula.Location = new Point(218, 246);
-            radioPelicula.Name = "radioPelicula";
-            radioPelicula.Size = new Size(66, 19);
-            radioPelicula.TabIndex = 20;
-            radioPelicula.TabStop = true;
-            radioPelicula.Text = "Pelicula";
-            radioPelicula.UseVisualStyleBackColor = true;
-            radioPelicula.CheckedChanged += radioButton1_CheckedChanged;
+            rbPelicula.AutoSize = true;
+            rbPelicula.Location = new Point(218, 246);
+            rbPelicula.Name = "rbPelicula";
+            rbPelicula.Size = new Size(66, 19);
+            rbPelicula.TabIndex = 20;
+            rbPelicula.TabStop = true;
+            rbPelicula.Text = "Pelicula";
+            rbPelicula.UseVisualStyleBackColor = true;
+            rbPelicula.CheckedChanged += rbPelicula_CheckedChanged;
             // 
-            // radioSerie
+            // rbSerie
             // 
-            radioSerie.AutoSize = true;
-            radioSerie.Location = new Point(290, 247);
-            radioSerie.Name = "radioSerie";
-            radioSerie.Size = new Size(50, 19);
-            radioSerie.TabIndex = 21;
-            radioSerie.TabStop = true;
-            radioSerie.Text = "Serie";
-            radioSerie.UseVisualStyleBackColor = true;
+            rbSerie.AutoSize = true;
+            rbSerie.Location = new Point(290, 247);
+            rbSerie.Name = "rbSerie";
+            rbSerie.Size = new Size(50, 19);
+            rbSerie.TabIndex = 21;
+            rbSerie.TabStop = true;
+            rbSerie.Text = "Serie";
+            rbSerie.UseVisualStyleBackColor = true;
+            rbSerie.CheckedChanged += rbSerie_CheckedChanged;
             // 
             // btnBorrarFiltro
             // 
-            btnBorrarFiltro.Location = new Point(574, 326);
+            btnBorrarFiltro.Location = new Point(574, 360);
             btnBorrarFiltro.Margin = new Padding(3, 2, 3, 2);
             btnBorrarFiltro.Name = "btnBorrarFiltro";
-            btnBorrarFiltro.Size = new Size(104, 29);
+            btnBorrarFiltro.Size = new Size(171, 29);
             btnBorrarFiltro.TabIndex = 22;
-            btnBorrarFiltro.Text = "Borrar";
+            btnBorrarFiltro.Text = "Borrar Filtros";
             btnBorrarFiltro.UseVisualStyleBackColor = true;
             // 
             // btnMostrarMas
             // 
-            btnMostrarMas.Location = new Point(766, 326);
+            btnMostrarMas.Location = new Point(766, 360);
             btnMostrarMas.Margin = new Padding(3, 2, 3, 2);
             btnMostrarMas.Name = "btnMostrarMas";
             btnMostrarMas.Size = new Size(99, 29);
@@ -301,7 +311,7 @@
             panelMas.Controls.Add(btnAccionFiltro);
             panelMas.Controls.Add(btnDramaFiltro);
             panelMas.Controls.Add(btnFiltroCrimen);
-            panelMas.Location = new Point(766, 360);
+            panelMas.Location = new Point(766, 394);
             panelMas.Name = "panelMas";
             panelMas.Size = new Size(99, 165);
             panelMas.TabIndex = 24;
@@ -309,7 +319,7 @@
             // 
             // btnLimpiar
             // 
-            btnLimpiar.Location = new Point(343, 293);
+            btnLimpiar.Location = new Point(358, 341);
             btnLimpiar.Margin = new Padding(3, 2, 3, 2);
             btnLimpiar.Name = "btnLimpiar";
             btnLimpiar.Size = new Size(87, 29);
@@ -320,26 +330,82 @@
             // 
             // cmbGenero
             // 
+            cmbGenero.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbGenero.FormattingEnabled = true;
             cmbGenero.Location = new Point(412, 151);
             cmbGenero.Name = "cmbGenero";
             cmbGenero.Size = new Size(177, 23);
             cmbGenero.TabIndex = 26;
             // 
+            // txtTemporadas
+            // 
+            txtTemporadas.Location = new Point(3, 25);
+            txtTemporadas.Name = "txtTemporadas";
+            txtTemporadas.Size = new Size(177, 23);
+            txtTemporadas.TabIndex = 27;
+            // 
+            // txtDuracion
+            // 
+            txtDuracion.Location = new Point(3, 27);
+            txtDuracion.Name = "txtDuracion";
+            txtDuracion.Size = new Size(177, 23);
+            txtDuracion.TabIndex = 28;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(3, 7);
+            label7.Name = "label7";
+            label7.Size = new Size(139, 15);
+            label7.TabIndex = 29;
+            label7.Text = "Cantidad De Temporadas";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(3, 9);
+            label8.Name = "label8";
+            label8.Size = new Size(55, 15);
+            label8.TabIndex = 30;
+            label8.Text = "Duracion";
+            // 
+            // panelCheckPelicula
+            // 
+            panelCheckPelicula.Controls.Add(label8);
+            panelCheckPelicula.Controls.Add(txtDuracion);
+            panelCheckPelicula.Location = new Point(218, 271);
+            panelCheckPelicula.Name = "panelCheckPelicula";
+            panelCheckPelicula.Size = new Size(203, 53);
+            panelCheckPelicula.TabIndex = 31;
+            panelCheckPelicula.Visible = false;
+            // 
+            // panelCheckSerie
+            // 
+            panelCheckSerie.Controls.Add(txtTemporadas);
+            panelCheckSerie.Controls.Add(label7);
+            panelCheckSerie.Location = new Point(427, 271);
+            panelCheckSerie.Name = "panelCheckSerie";
+            panelCheckSerie.Size = new Size(203, 53);
+            panelCheckSerie.TabIndex = 32;
+            panelCheckSerie.Visible = false;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(877, 535);
+            BackgroundImageLayout = ImageLayout.None;
+            ClientSize = new Size(889, 602);
+            Controls.Add(panelCheckSerie);
+            Controls.Add(panelCheckPelicula);
             Controls.Add(cmbGenero);
             Controls.Add(btnLimpiar);
             Controls.Add(btnEnviar);
             Controls.Add(panelMas);
             Controls.Add(btnMostrarMas);
             Controls.Add(btnBorrarFiltro);
-            Controls.Add(radioSerie);
-            Controls.Add(radioPelicula);
-            Controls.Add(checkBoxDestacado);
+            Controls.Add(rbSerie);
+            Controls.Add(rbPelicula);
+            Controls.Add(chkDestacado);
             Controls.Add(panel1);
             Controls.Add(btnFiltrar);
             Controls.Add(txtFiltro);
@@ -352,8 +418,8 @@
             Controls.Add(txtDirector);
             Controls.Add(txtName);
             Margin = new Padding(3, 2, 3, 2);
-            MaximumSize = new Size(893, 574);
-            MinimumSize = new Size(893, 574);
+            MaximumSize = new Size(905, 641);
+            MinimumSize = new Size(905, 641);
             Name = "Form1";
             Text = "Form1";
             Load += Form1_Load;
@@ -361,6 +427,10 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panelMas.ResumeLayout(false);
+            panelCheckPelicula.ResumeLayout(false);
+            panelCheckPelicula.PerformLayout();
+            panelCheckSerie.ResumeLayout(false);
+            panelCheckSerie.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -385,13 +455,19 @@
         private TextBox txtName;
         private Button btnFiltroRomance;
         private Panel panel1;
-        private CheckBox checkBoxDestacado;
-        private RadioButton radioPelicula;
-        private RadioButton radioSerie;
+        private CheckBox chkDestacado;
+        private RadioButton rbPelicula;
+        private RadioButton rbSerie;
         private Button btnBorrarFiltro;
         private Button btnMostrarMas;
         private Panel panelMas;
         private Button btnLimpiar;
         private ComboBox cmbGenero;
+        private TextBox txtTemporadas;
+        private TextBox txtDuracion;
+        private Label label7;
+        private Label label8;
+        private Panel panelCheckPelicula;
+        private Panel panelCheckSerie;
     }
 }
