@@ -20,6 +20,8 @@ namespace TP4_Windows_Form
         {
 
             InitializeComponent();
+            Text = "Cátalogo de Multimedia";
+
             contenidos = CargarDatos();
 
             dataGridView1.AutoGenerateColumns = false;
@@ -213,17 +215,17 @@ namespace TP4_Windows_Form
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(txtDirector.Text))
-            {
-                MessageBox.Show("Falta completar el campo: Director", "Campo requerido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtDirector.Focus();
-                return;
-            }
-
             if (cmbGenero.SelectedIndex == -1)
             {
                 MessageBox.Show("Falta seleccionar el Género", "Campo requerido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 cmbGenero.DroppedDown = true;
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtDirector.Text))
+            {
+                MessageBox.Show("Falta completar el campo: Director", "Campo requerido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtDirector.Focus();
                 return;
             }
 
@@ -362,6 +364,5 @@ namespace TP4_Windows_Form
             }
         }
 
-       
     }
 }

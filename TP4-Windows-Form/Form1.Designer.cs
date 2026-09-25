@@ -61,11 +61,13 @@
             label8 = new Label();
             panelCheckPelicula = new Panel();
             panelCheckSerie = new Panel();
+            pictureBox1 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel1.SuspendLayout();
             panelMas.SuspendLayout();
             panelCheckPelicula.SuspendLayout();
             panelCheckSerie.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // btnEnviar
@@ -85,6 +87,7 @@
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.GridColor = Color.SandyBrown;
             dataGridView1.Location = new Point(69, 396);
             dataGridView1.Margin = new Padding(3, 2, 3, 2);
             dataGridView1.Name = "dataGridView1";
@@ -125,9 +128,10 @@
             // 
             label2.Anchor = AnchorStyles.None;
             label2.AutoSize = true;
-            label2.Location = new Point(224, 101);
+            label2.Font = new Font("Lucida Sans Unicode", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Location = new Point(218, 65);
             label2.Name = "label2";
-            label2.Size = new Size(164, 15);
+            label2.Size = new Size(322, 23);
             label2.TabIndex = 2;
             label2.Text = "Sube tus Peliculas al Cátalogo";
             label2.Click += label2_Click;
@@ -166,10 +170,10 @@
             // 
             label1.Anchor = AnchorStyles.Top;
             label1.AutoSize = true;
-            label1.Font = new Font("Malgun Gothic", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(244, 27);
+            label1.Font = new Font("Lucida Sans Unicode", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(12, 8);
             label1.Name = "label1";
-            label1.Size = new Size(351, 45);
+            label1.Size = new Size(372, 39);
             label1.TabIndex = 0;
             label1.Text = "Cátalogo De Peliculas";
             // 
@@ -243,9 +247,12 @@
             // 
             // panel1
             // 
-            panel1.BackColor = SystemColors.GradientInactiveCaption;
+            panel1.BackColor = Color.DarkRed;
+            panel1.Controls.Add(pictureBox1);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(label2);
+            panel1.Font = new Font("Microsoft JhengHei", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            panel1.ForeColor = SystemColors.ButtonHighlight;
             panel1.Location = new Point(0, 1);
             panel1.Name = "panel1";
             panel1.Size = new Size(890, 116);
@@ -391,6 +398,16 @@
             panelCheckSerie.TabIndex = 32;
             panelCheckSerie.Visible = false;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = Properties.Resources.logo;
+            pictureBox1.Location = new Point(701, -29);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(189, 178);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 33;
+            pictureBox1.TabStop = false;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -434,6 +451,7 @@
             panelCheckPelicula.PerformLayout();
             panelCheckSerie.ResumeLayout(false);
             panelCheckSerie.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -472,5 +490,6 @@
         private Label label8;
         private Panel panelCheckPelicula;
         private Panel panelCheckSerie;
+        private PictureBox pictureBox1;
     }
 }
